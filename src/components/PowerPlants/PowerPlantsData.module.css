@@ -1,0 +1,12 @@
+.TableTop {
+    text-align:center;
+    color: black;
+    border: 1px solid black;
+    border-radius: 1px;
+    background-color: silver;
+}
+
+.PowerPlanet{
+    padding: 2%;
+    background-color: white;
+}
