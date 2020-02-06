@@ -10,9 +10,7 @@ class PowerPlantsData extends Component {
         super(props);
         this.state = {
             
-            items: [],
-            isLoaded: true,
-            powerPlantType: null
+            items: []
         };
     }
     // Loop through API
@@ -21,7 +19,7 @@ class PowerPlantsData extends Component {
         this.getFetch();
     }
 
-    componentDidUpdate(){
+    componentWillUnmount(){
         clearInterval(this.interval);
     }
 
@@ -31,7 +29,6 @@ class PowerPlantsData extends Component {
             .then(res => res.json())
             .then(json => {
                 this.setState({
-                    isLoaded: true,
                     items: json
                 })
             });
@@ -40,47 +37,47 @@ class PowerPlantsData extends Component {
     renderData(data){
         return(
             <div className = {styles.PowerPlanet}>
-                            <Table>
-                                <tbody>
-                                    <tr>
-                                        <th className = {styles.TableTop}>Federal Network Agency Number</th>
-                                        <th className = {styles.TableTop}>Name</th>
-                                        <th className = {styles.TableTop}>Company Name</th>
-                                        <th className = {styles.TableTop}>Postal Code</th>
-                                        <th className = {styles.TableTop}>City</th>
-                                        <th className = {styles.TableTop}>Address</th>
-                                        <th className = {styles.TableTop}>State</th>
-                                        <th className = {styles.TableTop}>Start Date</th>
-                                        <th className = {styles.TableTop}>Status</th>
-                                        <th className = {styles.TableTop}>Type</th>
-                                        <th className = {styles.TableTop}>Net Nominal Power MegaWatt</th>
-                                    </tr>
-                                </tbody>
-                                <tbody>
-                                    <tr>
-                                        <td className = {styles.TableTop}>{data.bundesnetzagentur_number}</td>
-                                        <td className = {styles.TableTop}>{data.name}</td>
-                                        <td className = {styles.TableTop}>{data.company_name}</td>
-                                        <td className = {styles.TableTop}>{data.plz}</td>
-                                        <td className = {styles.TableTop}>{data.city}</td>
-                                        <td className = {styles.TableTop}>{data.address}</td>
-                                        <td className = {styles.TableTop}>{data.state}</td>
-                                        <td className = {styles.TableTop}>{data.start_date}</td>
-                                        <td className = {styles.TableTop}>{data.status}</td>
-                                        <td className = {styles.TableTop}>{data.type}</td>
-                                        <td className = {styles.TableTop}>{data.net_nominal_power_mw}</td>
-                                    </tr>          
-                                </tbody>
-                            </Table>
-                        </div>
+                <Table>
+                    <tbody>
+                        <tr>
+                            <th className = {styles.TableTop}>Federal Network Agency Number</th>
+                            <th className = {styles.TableTop}>Name</th>
+                            <th className = {styles.TableTop}>Company Name</th>
+                            <th className = {styles.TableTop}>Postal Code</th>
+                            <th className = {styles.TableTop}>City</th>
+                            <th className = {styles.TableTop}>Address</th>
+                            <th className = {styles.TableTop}>State</th>
+                            <th className = {styles.TableTop}>Start Date</th>
+                            <th className = {styles.TableTop}>Status</th>
+                            <th className = {styles.TableTop}>Type</th>
+                            <th className = {styles.TableTop}>Net Nominal Power MegaWatt</th>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td className = {styles.TableTop}>{data.bundesnetzagentur_number}</td>
+                            <td className = {styles.TableTop}>{data.name}</td>
+                            <td className = {styles.TableTop}>{data.company_name}</td>
+                            <td className = {styles.TableTop}>{data.plz}</td>
+                            <td className = {styles.TableTop}>{data.city}</td>
+                            <td className = {styles.TableTop}>{data.address}</td>
+                            <td className = {styles.TableTop}>{data.state}</td>
+                            <td className = {styles.TableTop}>{data.start_date}</td>
+                            <td className = {styles.TableTop}>{data.status}</td>
+                            <td className = {styles.TableTop}>{data.type}</td>
+                            <td className = {styles.TableTop}>{data.net_nominal_power_mw}</td>
+                        </tr>          
+                    </tbody>
+                </Table>
+            </div>
         );
     }
     render () {
 
-        let { items, powerPlantType } = this.state;
-        
-        powerPlantType = this.props.powerPlantType
-        
+        let  items = this.state.items;
+
+        let powerPlantType = this.props.powerPlantType;
+                
         return(
 
             items.filter((data) => {

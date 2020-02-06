@@ -14,11 +14,11 @@ const options = [
 class App extends Component {
 
   state = {
-    selectedOption: null,
+    selectedOption: options[3],
   };
   
   handleChange = (selectedOption) => {
-    this.setState({ selectedOption });
+    this.setState({ selectedOption : selectedOption });
   };
 
   render() {
@@ -27,13 +27,13 @@ class App extends Component {
       <div className="App">
         <div className={SearchStyles.selectButton} >
               <p>Select The Plant Type: </p>
-                <Select value = {this.selectedOption}
+                <Select value = {this.state.selectedOption}
                         onChange = {this.handleChange} 
                         options = {options} />              
           
           </div>
         <h1>Power Plants Data!</h1>
-        <PowerPlantsData powerPlantType = {this.state.selectedOption} />
+        <PowerPlantsData powerPlantType = {this.state.selectedOption.value} />
       </div>
     );
   }
